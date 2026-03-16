@@ -1,0 +1,6 @@
+{
+  "name": "juniebjonesrecordproject",
+  "scripts": {
+    "start": "uvicorn main:app --reload"
+  }
+}

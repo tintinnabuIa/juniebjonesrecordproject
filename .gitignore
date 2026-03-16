@@ -1,0 +1,8 @@
+__pycache__/
+app/__pycache__/
+.shopify/
+.venv/
+
+.env
+shopify.app.toml
+shopify.web.toml
