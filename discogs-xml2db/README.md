@@ -1,5 +1,3 @@
-### I have modified and deleted some of the files in this repository to save on space. The contributors were working on a C# version, so that may be of use to any future programmers in here, because converting the files to CSVs is so very long. ###
-
 # discogs-xml2db v2
 
 discogs-xml2db is a python program for importing [discogs data dumps](https://data.discogs.com/)
