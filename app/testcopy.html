@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="shopify-api-key" content="%SHOPIFY_API_KEY%" />
+  <!-- allows use of Polaris and App Bridge even without npm -->
+  <script src="https://cdn.shopify.com/shopifycloud/app-bridge.js"></script>
+  <script src="https://cdn.shopify.com/shopifycloud/polaris.js"></script>
+</head>
+<body>
+    <s-page>
+      <!-- menu for form selection -->
+      <s-button commandFor="search-choice" id="menu-opening-button">Choose your search option</s-button>
+      <s-menu id="search-choice" accessibilityLabel="Search Choice">
+        <s-button onclick="showForm('artist-search')">Artist</s-button>
+        <s-button onclick="showForm('label-search')">Label</s-button>
+        <s-button onclick="showForm('master-search')">Master</s-button>
+        <s-button onclick="showForm('release-search')">Release</s-button>
+      </s-menu>
+      
+      <!-- all form variants -->
+      <div id="all-forms">
+        <!-- Artist Search Form -->
+        <s-form id="artist-search" class="form-container">
+          <s-text-field
+            label="ID"
+            oninput="console.log('Typing:', this.value)"
+          ></s-text-field>
+          <s-text-field
+            label="Name"
+            oninput="console.log('Typing:', this.value)"
+          ></s-text-field>
+          <s-text-field
+            label="Real Name"
+            oninput="console.log('Typing:', this.value)"
+          ></s-text-field>
+          <s-text-field
+            label="Profile"
+            oninput="console.log('Typing:', this.value)"
+          ></s-text-field>
+          <s-text-field
+            label="Data Quality"
+            oninput="console.log('Typing:', this.value)"
+          ></s-text-field>
+          <br>
+          <s-button type="submit">Search</s-button>
+        </s-form>
+
+        <!-- Label Search Form -->
+        <s-form id="label-search" class="form-container">
+          <s-text-field
+            label="ID"
+            oninput="console.log('Typing:', this.value)"
+          ></s-text-field>
+          <s-text-field
+            label="Name"
+            oninput="console.log('Typing:', this.value)"
+          ></s-text-field>
+          <s-text-field
+            label="Contact Info"
+            oninput="console.log('Typing:', this.value)"
+          ></s-text-field>
+          <s-text-field
+            label="Parent ID"
+            oninput="console.log('Typing:', this.value)"
+          ></s-text-field>
+          <s-text-field
+            label="Parent Name"
+            oninput="console.log('Typing:', this.value)"
+          ></s-text-field>
+          <s-text-field
+            label="Data Quality"
+            oninput="console.log('Typing:', this.value)"
+          ></s-text-field>
+          <br>
+          <s-button type="submit" id="label-submit">Search</s-button>
+        </s-form>
+
+        <!-- Master Search Form -->
+        <s-form id="master-search" class="form-container">
+          <s-text-field
+            label="ID"
+            oninput="console.log('Typing:', this.value)"
+          ></s-text-field>
+          <s-text-field
+            label="Title"
+            oninput="console.log('Typing:', this.value)"
+          ></s-text-field>
+          <s-text-field
+            label="Year"
+            oninput="console.log('Typing:', this.value)"
+          ></s-text-field>
+          <s-text-field
+            label="Main Release"
+            oninput="console.log('Typing:', this.value)"
+          ></s-text-field>
+          <s-text-field
+            label="Data Quality"
+            oninput="console.log('Typing:', this.value)"
+          ></s-text-field>
+          <br>
+          <s-button type="submit" id="master-submit">Search</s-button>
+        </s-form>
+
+        <!-- Release Search Form -->
+        <s-form id="release-search" class="form-container">
+          <s-text-field
+            label="ID"
+            oninput="console.log('Typing:', this.value)"
+          ></s-text-field>
+          <s-text-field
+            label="Title"
+            oninput="console.log('Typing:', this.value)"
+          ></s-text-field>
+          <s-text-field
+            label="Released"
+            oninput="console.log('Typing:', this.value)"
+          ></s-text-field>
+          <s-text-field
+            label="Country"
+            oninput="console.log('Typing:', this.value)"
+          ></s-text-field>
+          <s-text-field
+            label="Notes"
+            oninput="console.log('Typing:', this.value)"
+          ></s-text-field>
+          <s-text-field
+            label="Data Quality"
+            oninput="console.log('Typing:', this.value)"
+          ></s-text-field>
+          <s-text-field
+            label="Main"
+            oninput="console.log('Typing:', this.value)"
+          ></s-text-field>
+          <s-text-field
+            label="Master ID"
+            oninput="console.log('Typing:', this.value)"
+          ></s-text-field>
+          <s-text-field
+            label="Status"
+            oninput="console.log('Typing:', this.value)"
+          ></s-text-field>
+          <br>
+          <s-button type="submit" id="release-submit">Search</s-button>
+        </s-form>
+      </div>
+      
+      <br> 
+      <div id="json-table-container"></div>
+
+       <!-- scripts -->
+      <script>
+        // make forms invisible before button pressing starts
+        var forms = document.querySelectorAll('.form-container');
+        forms.forEach(function(form) {
+            form.style.display = 'none';
+          });
+
+        // General function to show a specific form and hide others
+        function showForm(formId) {
+          // Get all forms
+          var forms = document.querySelectorAll('.form-container');
+          // Loop through forms and hide them
+          forms.forEach(function(form) {
+            form.style.display = 'none';
+          });
+          // Show the selected form
+          var selectedForm = document.getElementById(formId);
+          // This is probably highly inefficient, but I do not know JavaScript, 
+          // and the only HTML/CSS class I took was about three years ago, which had no JS
+          // excuses excuses
+          if (selectedForm.id === "artist-search") {
+            document.getElementById("menu-opening-button").innerText = "Artist"
+          }
+          if (selectedForm.id === "label-search") {
+            document.getElementById("menu-opening-button").innerText = "Label"
+          }
+          if (selectedForm.id === "master-search") {
+            document.getElementById("menu-opening-button").innerText = "Master"
+          }
+          if (selectedForm.id === "release-search") {
+            document.getElementById("menu-opening-button").innerText = "Release"
+          }
+          if (selectedForm) {
+            selectedForm.style.display = 'block';
+          }
+        }
+
+        // table construction / cave mensam
+        async function createTable(jsonData) {
+          if (!jsonData || jsonData.length === 0) return console.log("No data to display.");
+          const container = document.getElementById("json-table-container"); // will need for appending children to div
+
+          const table = document.createElement("s-table");
+          const theaders = Object.keys(jsonData[0]);
+          const theaderRow = document.createElement("s-table-header-row");
+
+          theaders.forEach(header => {
+            // create header for each jsonData key; e.g., data_quality has a header made,
+            //  then has its underscore turned to a space
+            const theader = document.createElement("s-table-header");
+            theader.textContent = header.replace(/_/g, ' ');
+            theaderRow.appendChild(theader);
+          });
+          table.appendChild(theaderRow);
+
+          // make body for later appending
+          const tbody = document.createElement("s-table-body");
+          // loop through jsonData to make rows and cells with values, then append them to body
+          jsonData.forEach(rowData => {
+            const trow = document.createElement("s-table-row");
+
+            theaders.forEach(header => {
+              const tcell = document.createElement("s-table-cell");
+              let tvalue = rowData[header];
+              if (tvalue === null) {tvalue = "No value given"};
+
+              tcell.textContent = tvalue;
+              trow.appendChild(tcell);
+            });
+            tbody.appendChild(trow);
+          });
+
+          table.appendChild(tbody);
+          container.appendChild(table);
+        };
+
+        // give JSON data to API at main.py /api/post
+        async function sendData(jsonFormData) {
+          try {
+            const response = await fetch("http://localhost:8000" + "/api/post", {
+              method: "POST",
+              body: jsonFormData,
+              headers: {
+                "Content-Type": "application/json" 
+              }
+            });
+            const jsonData = await response.json();
+            return jsonData;
+            
+          } catch (e) {
+            console.error(e);
+          };
+        };
+        
+        // listen for submission and handle it
+        document.getElementById("all-forms").addEventListener("click", async function(event) {
+          if(event.target && event.target.nodeName === "S-BUTTON") {
+            event.preventDefault();
+            
+            // s-forms are funky; you can't just FormData() because they aren't
+            // natural HTMLElements
+            // below gets the parent of the button (s-form), gets the form's children,
+            // prepares a Map, and adds all elements to be sent out to main.py /api/post
+            // to that map
+            const form = event.target.parentElement;
+            const formChildren = form.children;
+            let reqChildData = new Map();
+            reqChildData.set("form-type", form.id);
+
+            for (const child of formChildren) {
+              if (child.nodeName === "S-TEXT-FIELD" && child.value != '') {
+                reqChildData.set(child.label, child.value);
+            }};
+            
+            // convert to JSON and send off for the API function, then send that for table construction
+            const jsonifiedData = JSON.stringify(Object.fromEntries(reqChildData.entries()));
+            const responseData = await sendData(jsonifiedData);
+            createTable(responseData);
+          };
+        });
+      </script>
+</s-page>
+</body>
+</html>
