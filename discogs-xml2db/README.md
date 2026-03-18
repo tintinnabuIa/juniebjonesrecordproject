@@ -1,3 +1,5 @@
+I've modified some of added the files in this module as to get them to work with my code. Most of it is from this repo, though.
+
 # discogs-xml2db v2
 
 discogs-xml2db is a python program for importing [discogs data dumps](https://data.discogs.com/)
