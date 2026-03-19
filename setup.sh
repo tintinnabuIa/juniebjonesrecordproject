@@ -1,5 +1,8 @@
 #!/bin/env bash
 
+# this should be a more simple method for running all of
+# the shell scripts written than going through the process
+
 get_script_dir()
 {
     local SOURCE_PATH="${BASH_SOURCE[0]}"

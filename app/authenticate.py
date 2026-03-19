@@ -1,3 +1,7 @@
+# this file doesn't actually do anything, but it would be of use for future developers
+# who would want to authenticate, so it stays (since my project doesn't actually need
+# any permissions, there is nothing to authenticate for)
+
 import shopify
 from convert_request import request_to_shopify_req
 from convert_response import shopify_result_to_response

@@ -1,3 +1,6 @@
+# my modifications:
+discogs_dumps/
+
 *.pyc
 Session.vim
 discogs_*_*.xml.*

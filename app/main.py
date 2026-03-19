@@ -5,7 +5,6 @@ import pathlib
 # so they can be run regardless of location (it was annoying me during testing)
 try: import sql_init as sql; import sql_query
 except: from . import sql_init as sql; from . import sql_query
-#print(sql.read_items(sql.Search_Params.Master(title="Moments In Time"))) # testing the sql connection and query
 
 app = FastAPI()
 app.add_middleware(

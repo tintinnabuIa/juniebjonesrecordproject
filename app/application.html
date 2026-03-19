@@ -149,22 +149,6 @@
       <br> 
       <div id="json-table-container"></div>
 
-      <!-- table to be modified by sendData js below 
-      <s-table>
-        <s-table-header-row>
-          <s-table-header>Name</s-table-header>
-          <s-table-header>Age</s-table-header>
-          <s-table-header>Occupation</s-table-header>
-        </s-table-header-row>
-        <s-table-body>
-          <s-table-row>
-            <s-table-cell>John Doe</s-table-cell>
-            <s-table-cell>19</s-table-cell>
-            <s-table-cell>Student</s-table-cell>
-          </s-table-row>
-          </s-table-body>
-      </s-table> -->
-
        <!-- scripts -->
       <script>
         // make forms invisible before button pressing starts
@@ -183,8 +167,9 @@
           });
           // Show the selected form
           var selectedForm = document.getElementById(formId);
-          // This is probably highly inefficient, but I do not know JavaScript, 
-          // and the only HTML/CSS class I took was about three years ago, which had no JS
+          // This is probably highly inefficient, but I do not know JavaScript [edit:
+          // I understand an iota of JS now], and the only HTML/CSS class I took was 
+          // about three years ago, which had no JS
           // excuses excuses
           if (selectedForm.id === "artist-search") {
             document.getElementById("menu-opening-button").innerText = "Artist"
@@ -267,9 +252,9 @@
             event.preventDefault();
             
             // s-forms are funky; you can't just FormData() because they aren't
-            // natural HTMLElements
+            // natural HTMLElements, so:
             // below gets the parent of the button (s-form), gets the form's children,
-            // prepares a Map, and adds all elements to be sent out to main.py /api/post
+            // prepares a map, and adds all elements to be sent out to main.py /api/post
             // to that map
             const form = event.target.parentElement;
             const formChildren = form.children;

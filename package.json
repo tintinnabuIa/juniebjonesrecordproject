@@ -1,6 +1,11 @@
 {
   "name": "juniebjonesrecordproject",
   "scripts": {
-    "start": "uvicorn main:app --reload"
-  }
+    "start": "uvicorn main:app" 
+  },
+  "comment_start": [
+    ["add a --reload after main:app for"],
+    ["development---reloads the dev site"],
+    ["upon .py modification, not html, though"]
+  ]
 }
