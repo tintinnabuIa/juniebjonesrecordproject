@@ -1,4 +1,4 @@
-#!/bin/env bash
+#!/usr/bin/env bash
 
 # this should be a more simple method for running all of
 # the shell scripts written than going through the process
@@ -22,10 +22,14 @@ get_script_dir()
     done
     # Get final script directory path from fully resolved source path
     SCRIPT_DIR="$(cd -P "$( dirname "$SOURCE_PATH" )" >/dev/null 2>&1 && pwd)"
+    # exporting so that it can be used in other scripts
     echo "$SCRIPT_DIR"
 }
 
 script_dir=$(get_script_dir)
+export SCRIPT_DIR=$script_dir
+echo $script_dir
+echo $SCRIPT_DIR
 
 echo "Initializing venv..."
 python3 -m venv "$script_dir/.venv"
@@ -38,13 +42,9 @@ echo "Installing pip requirements.txt..."
 pip install -r "$script_dir/requirements.txt"
 
 echo "Getting latest dumps..."
-./"$script_dir/discogs-xml2db/get_latest_dumps.sh"
+"$script_dir/discogs-xml2db/get_latest_dumps.sh"
 
 echo "Moving to postgresql..."
-./"$script_dir/discogs-xml2db/dumps-to-csv-to-psql.sh"
+"$script_dir/discogs-xml2db/dumps-to-csv-to-psql.sh"
 
-echo "Changing permissions of all files to be yours 700-style..."
-sudo chown -R "$(whoami)" "$script_dir"
-sudo chmod -R 700 "$script_dir"
-
-echo "Done! You'll probably want to do some \$(shopify auth login) and \$(shopify app init) stuff to initialize this as an app."
+echo "Done! You'll probably want to do some \$ shopify auth login and \$ shopify app init stuff to initialize this as an app."
