@@ -32,19 +32,19 @@ echo $script_dir
 echo $SCRIPT_DIR
 
 echo "Initializing venv..."
-python3 -m venv "$script_dir/.venv"
+python3 -m venv "${script_dir}/.venv"
 source .venv/bin/activate
 
 echo "Installing npm shopify..."
 npm install -g @shopify/cli@latest
 
 echo "Installing pip requirements.txt..."
-pip install -r "$script_dir/requirements.txt"
+pip install -r "${script_dir}/requirements.txt"
 
 echo "Getting latest dumps..."
-"$script_dir/discogs-xml2db/get_latest_dumps.sh"
+"${script_dir}/discogs-xml2db/get_latest_dumps.sh"
 
 echo "Moving to postgresql..."
-"$script_dir/discogs-xml2db/dumps-to-csv-to-psql.sh"
+"${script_dir}/discogs-xml2db/postgresql/dumps-to-csv-to-psql.sh"
 
 echo "Done! You'll probably want to do some \$ shopify auth login and \$ shopify app init stuff to initialize this as an app."
