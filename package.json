@@ -1,11 +1,20 @@
 {
   "name": "juniebjonesrecordproject",
   "scripts": {
-    "start": "uvicorn main:app" 
+    "start": "uvicorn main:app"
   },
   "comment_start": [
-    ["add a --reload after main:app for"],
-    ["development---reloads the dev site"],
-    ["upon .py modification, not html, though"]
-  ]
+    [
+      "add a --reload after main:app for"
+    ],
+    [
+      "development---reloads the dev site"
+    ],
+    [
+      "upon .py modification, not html, though"
+    ]
+  ],
+  "dependencies": {
+    "@shopify/cli": "^3.92.1"
+  }
 }

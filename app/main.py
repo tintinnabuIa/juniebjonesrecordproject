@@ -2,7 +2,7 @@ from fastapi import FastAPI
 from fastapi.responses import HTMLResponse, JSONResponse
 from fastapi.middleware.cors import CORSMiddleware
 import pathlib
-# so they can be run regardless of location (it was annoying me during testing)
+# so they can be run different locations (it was annoying me during testing)
 try: import sql_init as sql; import sql_query
 except: from . import sql_init as sql; from . import sql_query
 
