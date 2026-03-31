@@ -31,7 +31,7 @@ export SCRIPT_DIR=$script_dir
 
 echo "Initializing venv..."
 python3 -m venv "${script_dir}/.venv"
-source .venv/bin/activate
+source "${script_dir}/.venv/bin/activate"
 
 echo "Installing npm shopify..."
 npm install -g @shopify/cli@latest
