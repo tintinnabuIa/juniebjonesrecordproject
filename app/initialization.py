@@ -1,3 +1,6 @@
+# this file doesn't actually do anything, but it would be of use for future developers
+# who would want to authenticate, so it stays (since my project doesn't actually need
+# any permissions, there is nothing to authenticate for)
 from shopify_app import ShopifyApp
 import os
 
