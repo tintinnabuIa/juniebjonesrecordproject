@@ -3,6 +3,7 @@ app/__pycache__/
 .shopify/
 .venv/
 node_modules/
+discogs-xml2db/csv_dir/
 
 .env
 shopify.app.toml

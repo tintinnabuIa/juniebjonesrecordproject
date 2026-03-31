@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 
-# example of download link: https://data.discogs.com/?download=data%2F2026%2Fdiscogs_20260301_artists.xml.gz
+# download link example: 
+#              https://data.discogs.com/?download=data%2F2026%2Fdiscogs_20260301_[artists.xml.gz]
 DATA_URL_STEM="https://data.discogs.com/?download=data%2F"$(date "+%Y")"%2Fdiscogs_"$(date "+%Y%m")"01_"
 DUMP_TYPES="artists labels masters releases"
 
