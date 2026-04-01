@@ -6,7 +6,10 @@ import pathlib
 try: import sql_init as sql; import sql_query
 except: from . import sql_init as sql; from . import sql_query
 
+# what uvicorn is looking for
 app = FastAPI()
+
+# allows for cross-origin requests / necessary for frontend/backend communication
 app.add_middleware(
     CORSMiddleware,
     allow_origins=['*'],
@@ -14,6 +17,7 @@ app.add_middleware(
     allow_headers=['*']
 )
 
+# main page 
 @app.get("/", response_class=HTMLResponse)
 async def display_form():
     # route to HTML file, then put up contents on page
@@ -21,6 +25,7 @@ async def display_form():
     with open(html_file, "rt", encoding="utf-8") as html_content:
         return HTMLResponse(content=html_content.read(), status_code=200)
 
+# where js form data is sent to
 @app.post("/api/post")
 async def return_data_for_query(data: dict): 
     # isolate type, get classes for initialization

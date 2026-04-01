@@ -1,5 +1,6 @@
 # my modifications:
 discogs_dumps/
+csv_dir/
 
 *.pyc
 Session.vim

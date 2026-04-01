@@ -18,9 +18,11 @@ done
 
 wget "${DATA_URL_STEM}CHECKSUM.txt" -O "${SCRIPT_DIR}/discogs-xml2db/discogs_dumps/CHECKSUM.txt" # grab checksum
 
+cd "${SCRIPT_DIR}/discogs-xml2db/discogs_dumps/" # change to the dumps directory to run the checksum verification
 if sha256sum -c "${SCRIPT_DIR}/discogs-xml2db/discogs_dumps/CHECKSUM.txt"; then
 	echo "Checksum verification passed."
 else
 	echo "Checksum verification failed. Please check the downloaded files."
 	exit 1
 fi
+cd "${SCRIPT_DIR}" # return to main

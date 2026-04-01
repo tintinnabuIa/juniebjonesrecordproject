@@ -18,7 +18,7 @@ with open(psql_conf, "rt", encoding="utf-8") as conf:
         if index != -1:
             password = line[len(password)+1:-1]
             pass
-
+# this is what allows for the database access
 engine = create_engine(f"postgresql+psycopg2://{user}:{password}@localhost:5432/discogs", echo=False)
 
 # make schemas from the sql database tables

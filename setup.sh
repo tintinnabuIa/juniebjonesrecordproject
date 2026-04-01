@@ -29,15 +29,19 @@ get_script_dir()
 script_dir=$(get_script_dir)
 export SCRIPT_DIR=$script_dir
 
+echo "###"
+echo "This will use sudo to create a postgres user, so you still have to babysit a little bit"
+echo "###"
+
 echo "Initializing venv..."
 python3 -m venv "${script_dir}/.venv"
 source "${script_dir}/.venv/bin/activate"
 
 echo "Installing npm shopify..."
-npm install -g @shopify/cli@latest
+sudo npm install -g @shopify/cli@latest
 
 echo "Installing pip requirements.txt..."
-pip install -r "${script_dir}/requirements.txt"
+pip install -r "${script_dir}/requirements.txt" -q
 
 echo "Getting latest dumps..."
 "${script_dir}/discogs-xml2db/get_latest_dumps.sh"
