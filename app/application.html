@@ -241,10 +241,13 @@
                 reqChildData.set(child.label, child.value);
             }};
             
-            // convert to JSON and send off for the API function, then send that for table construction
-            const jsonifiedData = JSON.stringify(Object.fromEntries(reqChildData.entries()));
-            const responseData = await sendData(jsonifiedData);
-            createTable(responseData);
+            // prevent blank queries from going through
+            if (reqChildData.size !== 0) {
+              // convert to JSON and send off for the API function, then send that for table construction
+              const jsonifiedData = JSON.stringify(Object.fromEntries(reqChildData.entries()));
+              const responseData = await sendData(jsonifiedData);
+              createTable(responseData);
+            };
           };
         });
       </script>
