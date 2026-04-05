@@ -1,3 +1,6 @@
+Not really documentation, but it is somewhat.
+YouTube video of program, which is also documentation-esque (has instructions): https://www.youtube.com/watch?v=z9-oAtb6ymw
+
 ## **Criterion C: Development**
 
 Note that my code took a different route than what was said in Criterion A and B; I used the raw data dumps themselves instead of the Python Discogs client, as the data dumps are CC0 No Rights Reserved, while the API can have some restricted data (Discogs n.d.-a, n.d.-b), meaning there aren't any usage issues or rate limiting to deal with. 
