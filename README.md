@@ -1,5 +1,6 @@
-Not really documentation, but it is somewhat.
-YouTube video of program, which is also documentation-esque (has instructions): https://www.youtube.com/watch?v=z9-oAtb6ymw
+This isn't really documentation, but it is somewhat. The formatting is also somewhat broken after being downloaded as an .md from Google Docs. 
+
+Here's a YouTube video of the program, which is also documentation-esque (has instructions): https://www.youtube.com/watch?v=z9-oAtb6ymw
 
 ## **Criterion C: Development**
 
